@@ -1,0 +1,23 @@
+{
+  "name": "corona-dashboard",
+  "version": "1.0.0",
+  "description": "corona tracking app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-pratyush/corona-dashboard.git"
+  },
+  "author": "Pratyush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k-pratyush/corona-dashboard/issues"
+  },
+  "homepage": "https://github.com/k-pratyush/corona-dashboard#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  }
+}
