@@ -1,13 +1,19 @@
+const path = require('path');
 const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
 const app = express();
+app.set("view engine", "ejs");
 
-app.set('view engine', 'ejs');
+dotenv.config({path: './config/config.env'});
+app.use(express.json());
+app.use(cors());
 
-app.get('/', (req, res) => {
-    res.render('index');
-});
+app.use('/api', require("./routes/map"));
 
-app.listen(3000, () => {
+PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
     console.log('Server active on port 3000');
 });
