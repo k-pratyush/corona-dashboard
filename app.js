@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const axios = require('axios');
+const fetch = require("node-fetch");
 
 const app = express();
 
@@ -17,6 +17,12 @@ app.use(cors());
 app.use(express.static(__dirname + '/public'));
 
 app.use('/api', require("./routes/map"));
+
+fetch("https://pomber.github.io/covid19/timeseries.json")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data["India"][data["India"].length - 1].confirmed)
+});
 
 PORT = process.env.PORT || 3000;
 

@@ -1,6 +1,7 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response, redirect
 import pandas as pd
 from pmdarima import auto_arima
+import json
 
 app = Flask(__name__)
 
@@ -14,16 +15,15 @@ def home():
         "status": "OK"
     })
 
-@app.route("/<country>")
+@app.route("/predict/<country>")
 def country_prediction(country):
     if not country in models.keys():
         models[country] = auto_arima(data.loc[country], trace=True, error_action='ignore',
                                     m=12, seasonal=True, stepwise=True, suppress_warnings=True)
     return jsonify({
-            "status": 'OK',
-            "country": country,
-            "prediction": models[country].predict().tolist()
-        })
-
+        "country": country,
+        "prediction": models[country].predict().tolist()
+    })
+    
 if __name__ == "__main__":
     app.run(debug=True)
