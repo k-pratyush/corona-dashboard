@@ -3,14 +3,13 @@
 <body>
 
 <!-- Dashboard Map -->
-    <div class="split left">
+<div class="split left">
 
     <div id="map"></div>
     <pre id="coordinates" class="coordinates"></pre>
     <pre id="submitButton" class="submitButton"></pre>
 
     <script src="mapboxGL.js">
-
     </script>
 </div>
 
@@ -18,6 +17,7 @@
 <div class="split right">
     <h1>Dashboard</h1>
     <h3><%= data %></h3>
+    <canvas id="canvas"></canvas>
 </div>
 
 <%- include('footer') %>
