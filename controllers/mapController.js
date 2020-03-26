@@ -1,9 +1,20 @@
 const NodeGeocoder = require('node-geocoder');
 const axios = require('axios');
 
-exports.landingPage = (req, res) => {
+let country = "";
+
+exports.landingPage = async (req, res) => {
   res.render("index", {data: ""});
 };
+
+exports.generatePlot = (req, res) => {
+  axios.get('http://localhost:5000/predict/' + country).then(resp => {
+    res.status(200).json({
+      key: resp.data["country"],
+      value: resp.data['prediction']
+    });
+  });
+}
 
 exports.getStats = async(req, res) => {
   const latitude = req.body.lat;
@@ -20,9 +31,7 @@ exports.getStats = async(req, res) => {
     lon: longitude
   });
 
-  axios.get('http://localhost:5000/predict/' + result[0].countryCode).then(resp => {
-  console.log(resp.data);
-  });
+  country = result[0].countryCode;
 
   res.render("index", {data: result[0].countryCode});
 }
