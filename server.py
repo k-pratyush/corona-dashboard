@@ -5,7 +5,8 @@ import json
 
 app = Flask(__name__)
 
-data = pd.read_csv("dataset/final.csv", index_col="Unnamed: 0")
+data = pd.read_csv("dataset/final.csv", index_col="Unnamed: 0.1")
+data = data.drop('Unnamed: 0', 1)
 
 models = {}
 
